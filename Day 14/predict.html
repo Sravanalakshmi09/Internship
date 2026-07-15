@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="hero">
+
+    <h1>
+        <i class="fa-solid fa-brain"></i>
+        IoT Anomaly Prediction
+    </h1>
+
+    <p>
+        Enter the device ID and IoT sensor values below. The trained Machine
+        Learning model will analyze the data and determine whether the device
+        is operating normally or showing anomalous behaviour.
+    </p>
+
+</div>
+
+<div class="form-container">
+
+    <h2>
+        <i class="fa-solid fa-microchip"></i>
+        Sensor Input
+    </h2>
+
+    <form method="POST">
+
+        <label>
+            <i class="fa-solid fa-microchip"></i>
+            Device ID
+        </label>
+
+        <input
+            type="text"
+            name="device_id"
+            placeholder="Example: DEVICE-001"
+            required
+        >
+
+        <label>
+            <i class="fa-solid fa-temperature-high"></i>
+            Temperature (°C)
+        </label>
+
+        <input
+            type="number"
+            step="0.01"
+            name="temperature"
+            placeholder="Example: 27.5"
+            required
+        >
+
+        <label>
+            <i class="fa-solid fa-droplet"></i>
+            Humidity (%)
+        </label>
+
+        <input
+            type="number"
+            step="0.01"
+            name="humidity"
+            placeholder="Example: 65"
+            required
+        >
+
+        <label>
+            <i class="fa-solid fa-battery-three-quarters"></i>
+            Battery Level (%)
+        </label>
+
+        <input
+            type="number"
+            step="0.01"
+            name="battery"
+            placeholder="Example: 85"
+            required
+        >
+
+        <button type="submit">
+
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+
+            Predict Device Status
+
+        </button>
+
+    </form>
+
+    {% if prediction %}
+
+    <div class="result">
+
+        <h2>
+
+            Prediction Result
+
+        </h2>
+
+        {% if prediction == "Normal" %}
+
+        <div class="status normal-status">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h1 class="green">
+
+                NORMAL
+
+            </h1>
+
+            <p>
+
+                The sensor readings are within the normal operating range.
+                No abnormal behaviour was detected.
+
+            </p>
+
+        </div>
+
+        {% else %}
+
+        <div class="status anomaly-status">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <h1 class="red">
+
+                ANOMALY DETECTED
+
+            </h1>
+
+            <p>
+
+                The machine learning model detected unusual sensor values.
+                This device should be inspected.
+
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<br>
+
+<div class="cards">
+
+    <div class="card">
+
+        <i class="fa-solid fa-temperature-high"></i>
+
+        <h3>Temperature</h3>
+
+        <p>
+
+            Measures the operating temperature of the IoT device.
+
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <i class="fa-solid fa-droplet"></i>
+
+        <h3>Humidity</h3>
+
+        <p>
+
+            Monitors the surrounding humidity level.
+
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <i class="fa-solid fa-battery-three-quarters"></i>
+
+        <h3>Battery</h3>
+
+        <p>
+
+            Indicates the remaining battery percentage of the device.
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

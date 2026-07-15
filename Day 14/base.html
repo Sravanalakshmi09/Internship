@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SignalSense - IoT Anomaly Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+
+    <header>
+
+        <div class="logo">
+
+            <i class="fa-solid fa-microchip"></i>
+
+            <h2>SignalSense</h2>
+
+        </div>
+
+        <nav>
+
+            <a href="/">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="/predict">
+                <i class="fa-solid fa-brain"></i>
+                Predict
+            </a>
+
+            <a href="/history">
+                <i class="fa-solid fa-database"></i>
+                History
+            </a>
+
+        </nav>
+
+    </header>
+
+    <main class="container">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <footer>
+
+        <p>
+
+            SignalSense • IoT Anomaly Detection System
+
+        </p>
+
+        <small>
+
+            Python • Flask • Machine Learning • SQLite
+
+        </small>
+
+    </footer>
+
+    <!-- Particle Library -->
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

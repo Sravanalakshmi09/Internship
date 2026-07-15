@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            <i class="fa-solid fa-microchip"></i>
+            SignalSense
+        </h1>
+
+        <h2>IoT Anomaly Detection System</h2>
+
+        <p>
+            Monitor IoT sensor data and instantly detect abnormal device
+            behaviour using Machine Learning. This dashboard predicts whether
+            incoming sensor values represent a <b>Normal</b> device or an
+            <b>Anomaly</b>.
+        </p>
+
+        <a href="/predict" class="btn">
+            <i class="fa-solid fa-play"></i>
+            Start Prediction
+        </a>
+
+    </div>
+
+</section>
+
+<br><br>
+
+<!-- Dashboard Cards -->
+
+<div class="cards">
+
+    <div class="card total">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        <h3>Total Predictions</h3>
+
+        <h1>{{ total }}</h1>
+
+        <p>Predictions stored in database</p>
+
+    </div>
+
+    <div class="card normal">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <h3>Normal Devices</h3>
+
+        <h1>{{ normal }}</h1>
+
+        <span class="badge online">
+
+            Stable
+
+        </span>
+
+    </div>
+
+    <div class="card anomaly">
+
+        <i class="fa-solid fa-triangle-exclamation"></i>
+
+        <h3>Anomalies</h3>
+
+        <h1>{{ anomaly }}</h1>
+
+        <span class="badge warning">
+
+            Needs Attention
+
+        </span>
+
+    </div>
+
+</div>
+
+<!-- Features -->
+
+<div class="glass">
+
+    <h2>
+
+        <i class="fa-solid fa-bolt"></i>
+
+        Project Features
+
+    </h2>
+
+    <br>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <i class="fa-solid fa-brain"></i>
+
+            <h3>Machine Learning</h3>
+
+            <p>
+
+                Uses a trained Logistic Regression model to classify
+                sensor readings as Normal or Anomaly.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-database"></i>
+
+            <h3>SQLite Database</h3>
+
+            <p>
+
+                Stores every prediction so users can review
+                previous results.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <h3>Real-time Detection</h3>
+
+            <p>
+
+                Quickly identifies abnormal sensor values
+                that may indicate equipment faults.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+
+<!-- Workflow -->
+
+<div class="glass">
+
+    <h2>
+
+        <i class="fa-solid fa-gears"></i>
+
+        System Workflow
+
+    </h2>
+
+    <br>
+
+    <p>
+
+        <strong>Step 1:</strong> Enter the Device ID, Temperature, Humidity and Battery values.
+
+    </p>
+
+    <br>
+
+    <p>
+
+        <strong>Step 2:</strong> Flask sends the values to the Machine Learning model.
+
+    </p>
+
+    <br>
+
+    <p>
+
+        <strong>Step 3:</strong> The Standard Scaler normalizes the values.
+
+    </p>
+
+    <br>
+
+    <p>
+
+        <strong>Step 4:</strong> Logistic Regression predicts the device status.
+
+    </p>
+
+    <br>
+
+    <p>
+
+        <strong>Step 5:</strong> The result is displayed and saved to SQLite.
+
+    </p>
+
+</div>
+
+{% endblock %}
