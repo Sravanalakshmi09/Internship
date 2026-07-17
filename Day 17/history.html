@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SignalSense | History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div id="bg"></div>
+
+<div id="cursor"></div>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <h2>SignalSense</h2>
+
+    </div>
+
+    <ul>
+
+        <li>
+
+            <a href="/dashboard">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/prediction">
+
+                <i class="fa-solid fa-microchip"></i>
+
+                Prediction
+
+            </a>
+
+        </li>
+
+        <li class="active">
+
+            <a href="/history">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                History
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/logout">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+    <div class="navbar">
+
+        <h2>Prediction History</h2>
+
+        <div class="profile">
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>{{ session['user_name'] }}</span>
+
+        </div>
+
+    </div>
+
+    <!-- Top Controls -->
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:20px;flex-wrap:wrap;">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search Device ID..."
+            style="padding:12px;width:280px;border:none;border-radius:10px;outline:none;">
+
+        <div>
+
+            <button
+                class="predict-btn"
+                onclick="exportCSV()">
+
+                Export CSV
+
+            </button>
+
+            <button
+                class="predict-btn"
+                onclick="deleteAllHistory()"
+                style="background:#dc2626; margin-left:10px;">
+
+                Clear History
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- History Table -->
+
+    <div class="card">
+
+        <table
+            id="historyTable"
+            style="width:100%;border-collapse:collapse;">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Device ID</th>
+
+                    <th>Prediction</th>
+
+                    <th>Confidence</th>
+
+                    <th>Date</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="historyBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/background.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/history.js') }}"></script>
+
+</body>
+
+</html>

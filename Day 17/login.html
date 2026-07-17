@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SignalSense | Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}?v=2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<style>
+/* Inline overrides: nav as single horizontal row */
+.site-nav{display:flex!important;gap:28px!important;align-items:center!important;justify-content:space-between!important;width:520px!important}
+.site-nav a{padding:8px 18px;border-radius:12px;transition:all .22s ease;display:inline-block}
+.site-nav a:hover{color:#020617;background:linear-gradient(135deg,#7dd3fc 0%,#60a5fa 100%);transform:translateY(-4px) scale(1.02);box-shadow:0 8px 30px rgba(37,99,235,.28)}
+.logo .project-title{font-size:34px;font-weight:800;background:linear-gradient(90deg,#60a5fa,#7dd3fc,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 30px rgba(60,130,246,.16)}
+</style>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <div id="bg"></div>
+
+    <!-- Cursor Glow -->
+
+    <div id="cursor"></div>
+    <!-- Site header (match homepage) -->
+    <header class="site-header">
+        <div class="logo">
+            <span class="project-title">SignalSense</span>
+            <span class="project-sub">IoT Anomaly Detection</span>
+        </div>
+        <nav class="site-nav">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/prediction">Predict</a>
+            <a href="/history">History</a>
+            <a href="/login">Login</a>
+        </nav>
+        <a class="cta-btn" href="/login">Login</a>
+    </header>
+
+    <!-- Creative two-column login layout -->
+    <div class="login-creative">
+
+        <div class="creative-panel">
+            <h2>Welcome Back</h2>
+            <p>Sign in to access your SignalSense dashboard — monitor devices and detect anomalies in real time.</p>
+            <div class="features">
+                <div class="feature">Realtime alerts</div>
+                <div class="feature">Easy predictions</div>
+                <div class="feature">Secure sessions</div>
+            </div>
+            <div class="decor-blobs">
+                <span class="blob b1"></span>
+                <span class="blob b2"></span>
+            </div>
+        </div>
+
+        <div class="login-container">
+
+            <div class="login-card">
+
+                <h1>SignalSense</h1>
+
+                <p>IoT Anomaly Detection System</p>
+
+                <form id="loginForm">
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Email Address"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            required
+                        >
+
+                    </div>
+                    <div class="create-account-row">
+                        <a href="/register" class="create-link">Create Account</a>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="login-btn"
+                    >
+
+                        Login
+
+                    </button>
+
+                </form>
+
+                
+
+                <p id="message" class="message"></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/background.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+
+</html>

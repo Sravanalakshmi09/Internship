@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignalSense Dashboard</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div id="bg"></div>
+<div id="cursor"></div>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        <h2>SignalSense</h2>
+        <small class="status">
+            <i class="fa-solid fa-circle"></i>
+            ONLINE
+        </small>
+    </div>
+
+    <ul>
+
+        <li class="active">
+            <a href="/dashboard">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/prediction">
+                <i class="fa-solid fa-microchip"></i>
+                <span>Prediction</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/history">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/profile">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+    <!-- Navbar -->
+
+    <div class="navbar">
+
+        <div>
+            <h2>Dashboard</h2>
+            <p class="subtitle">
+                IoT Anomaly Detection Monitoring
+            </p>
+        </div>
+
+        <div class="nav-right">
+
+            <div class="clock">
+                <i class="fa-regular fa-clock"></i>
+                <span id="liveTime"></span>
+            </div>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-user-circle"></i>
+
+                <div>
+
+                    <strong>{{ session['user_name'] }}</strong>
+
+                    <small>Administrator</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- KPI Cards -->
+
+    <div class="cards">
+
+        <div class="card total">
+
+            <div class="icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div>
+
+                <h4>Total Predictions</h4>
+
+                <h1 id="totalPredictions">0</h1>
+
+                <small>Overall Predictions</small>
+
+            </div>
+
+        </div>
+
+        <div class="card normal">
+
+            <div class="icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+
+                <h4>Normal</h4>
+
+                <h1 id="normalCount">0</h1>
+
+                <small>Healthy Devices</small>
+
+            </div>
+
+        </div>
+
+        <div class="card anomaly">
+
+            <div class="icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <div>
+
+                <h4>Anomalies</h4>
+
+                <h1 id="anomalyCount">0</h1>
+
+                <small>Requires Attention</small>
+
+            </div>
+
+        </div>
+
+        <div class="card accuracy">
+
+            <div class="icon">
+                <i class="fa-solid fa-bullseye"></i>
+            </div>
+
+            <div>
+
+                <h4>Accuracy</h4>
+
+                <h1 id="accuracy">--%</h1>
+
+                <small>Detection Accuracy</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Second Row -->
+
+    <div class="dashboard-grid">
+
+        <!-- Chart -->
+
+        <div class="panel chart-panel">
+
+            <div class="panel-header">
+
+                <h3>Prediction Distribution</h3>
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+            </div>
+
+            <canvas id="predictionChart"></canvas>
+
+        </div>
+
+        <!-- System Health -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>System Health</h3>
+
+                <i class="fa-solid fa-heart-pulse"></i>
+
+            </div>
+
+            <div class="health">
+
+                <div>
+                    <span>ML Model</span>
+                    <span class="badge green">Loaded</span>
+                </div>
+
+                <div>
+                    <span>Database</span>
+                    <span class="badge green">Connected</span>
+                </div>
+
+                <div>
+                    <span>Server</span>
+                    <span class="badge green">Running</span>
+                </div>
+
+                <div>
+                    <span>Monitoring</span>
+                    <span class="badge blue">Active</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Third Row -->
+
+    <div class="bottom-grid">
+
+        <!-- Welcome -->
+
+        <div class="panel">
+
+            <h3>Welcome Back 👋</h3>
+
+            <h2>{{ session['user_name'] }}</h2>
+
+            <p>
+                Monitor your IoT devices and detect anomalies in real time
+                using the trained Machine Learning model.
+            </p>
+
+            <a href="/prediction" class="predict-btn">
+
+                <i class="fa-solid fa-play"></i>
+
+                Start Prediction
+
+            </a>
+
+        </div>
+
+        <!-- Quick Actions -->
+
+        <div class="panel">
+
+            <h3>Quick Actions</h3>
+
+            <div class="actions">
+
+                <a href="/prediction">
+                    <i class="fa-solid fa-plus"></i>
+                    New Prediction
+                </a>
+
+                <a href="/history">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    View History
+                </a>
+
+                <a href="/profile">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/background.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+
+</html>

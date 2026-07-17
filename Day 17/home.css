@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#020617;
+    color:white;
+}
+
+#bg{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle at center,#2563eb44,#020617 70%);
+    z-index:-3;
+}
+
+#cursor{
+    position:fixed;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:rgba(59,130,246,.30);
+    filter:blur(90px);
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    transition:.08s;
+    z-index:-2;
+}
+
+.particle{
+    position:absolute;
+    top:0;
+    left:0;
+    pointer-events:none;
+    opacity:.85;
+    will-change:transform;
+    mix-blend-mode:screen;
+    filter:blur(0.5px);
+    transition:transform .1s ease-out;
+    box-shadow:0 0 30px rgba(56,189,248,.4);
+}
+
+.site-header{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:30px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    position:relative;
+}
+
+.logo .project-title{
+    font-size:34px;
+    font-weight:800;
+    background:linear-gradient(90deg,#60a5fa,#7dd3fc,#60a5fa);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 6px 30px rgba(60,130,246,.16);
+    animation:logoGlow 3.6s ease-in-out infinite;
+}
+
+.logo .project-sub{
+    font-size:12px;
+    color:#cbd5e1;
+    opacity:0.95;
+}
+
+.site-nav{
+    display:flex;
+    gap:28px;
+    align-items:center;
+    justify-content:space-between;
+    width:520px;
+}
+
+.site-nav a{
+    color:#cbd5e1;
+    text-decoration:none;
+    padding:8px 18px;
+    border-radius:12px;
+    transition:all .22s ease;
+    display:inline-block;
+    font-weight:500;
+}
+
+.site-nav a:hover,
+.site-nav a:focus{
+    color:#020617;
+    background:linear-gradient(135deg,#7dd3fc 0%,#60a5fa 100%);
+    transform:translateY(-4px) scale(1.02);
+    box-shadow:0 8px 30px rgba(37,99,235,.28);
+}
+
+.site-nav a.active{
+    background:linear-gradient(135deg,#38bdf8 0%,#2563eb 100%);
+    color:#021024;
+}
+
+@keyframes logoGlow{
+    0%{text-shadow:0 4px 18px rgba(60,130,246,.08)}
+    50%{text-shadow:0 12px 42px rgba(60,130,246,.24)}
+    100%{text-shadow:0 4px 18px rgba(60,130,246,.08)}
+}
+
+.cta-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 28px;
+    background:#38bdf8;
+    color:#020617;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.25s;
+}
+
+.cta-btn:hover{
+    transform:translateY(-2px);
+}
+
+.hero-section{
+    width:100%;
+    max-width:1120px;
+    margin:0 auto;
+    min-height:calc(100vh - 140px);
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding:0 40px;
+}
+
+.hero-copy{
+    max-width:640px;
+}
+
+.eyebrow{
+    display:inline-block;
+    margin-bottom:16px;
+    color:#38bdf8;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-weight:700;
+}
+
+.hero-copy h1{
+    font-size:64px;
+    line-height:1.05;
+    margin-bottom:24px;
+    color:#ffffff;
+}
+
+.hero-copy p{
+    color:#cbd5e1;
+    font-size:18px;
+    line-height:1.8;
+    margin-bottom:32px;
+}
+
+.hero-actions{
+    display:flex;
+    gap:18px;
+}
+
+.about-section{
+    width:100%;
+    max-width:1120px;
+    margin:0 auto 60px;
+    padding:0 40px;
+}
+
+.about-card{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(24px);
+    border-radius:28px;
+    padding:40px;
+}
+
+.about-card h2{
+    font-size:32px;
+    margin-bottom:18px;
+    color:#ffffff;
+}
+
+.about-card p{
+    color:#cbd5e1;
+    line-height:1.8;
+}
+
+@media(max-width:1200px){
+    .site-nav{width:420px;gap:20px}
+}
+
+@media(max-width:900px){
+    .site-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .site-nav{
+        grid-template-columns:1fr;
+        gap:12px 0;
+        align-items:flex-start;
+    }
+
+    .hero-section{
+        padding:0 24px;
+        min-height:auto;
+    }
+
+    .hero-copy h1{
+        font-size:48px;
+    }
+}
+
+@media(max-width:640px){
+    .site-header,
+    .hero-section,
+    .about-section{
+        padding:0 16px;
+    }
+
+    .site-nav{
+        gap:14px;
+    }
+
+    .hero-copy h1{
+        font-size:38px;
+    }
+}
